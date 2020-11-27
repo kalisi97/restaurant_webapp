@@ -30,3 +30,56 @@
            (belongs-to customerorder {:fk :OrderId})
            (entity-fields :OrderItemId :OrderId :ItemId :Quantity))
 
+(schema/defschema OrderItem
+  {
+   :OrderItemId schema/Num
+   :OrderId     schema/Num
+   :ItemId      schema/Num
+   :Quantity    schema/Num
+   })
+
+(schema/defschema Customer
+  {
+   :CustomerId schema/Num
+   :Name       schema/Str
+   :Contact    schema/Str
+   })
+
+
+(schema/defschema Order
+  {
+   :OrderId    schema/Num
+   :CustomerId schema/Num
+   :PMethod    schema/Str
+   :GTotal     schema/Num
+   :orderitems [OrderItem]
+   })
+
+(schema/defschema Item
+  {
+   :ItemId schema/Num
+   :Name   schema/Str
+   :Price  schema/Num
+   })
+
+(schema/defschema SaveOrUpdateCustomer
+  {
+   :Name       schema/Str
+   :Contact    schema/Str
+   })
+
+(schema/defschema NewOrderItem
+  {
+   :ItemId      schema/Num
+   :Quantity    schema/Num
+   })
+
+(schema/defschema NewOrder
+  {
+   :CustomerId schema/Num
+   :PMethod    schema/Str
+   :GTotal     schema/Num
+   :OrderItems  [NewOrderItem]
+   })
+
+
