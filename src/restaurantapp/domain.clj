@@ -45,7 +45,6 @@
    :Contact    schema/Str
    })
 
-
 (schema/defschema Order
   {
    :OrderId    schema/Num

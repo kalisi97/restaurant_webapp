@@ -26,12 +26,14 @@
              (GET "/" []
                :return [Customer]
                :summary "Retrieve all customers."
-               (ok (q/get-customers)))
+               (def customersFound (q/get-customers))
+               (if customersFound (ok customersFound) (not-found)))
              (GET "/:CustomerId" []
                :path-params [CustomerId :- schema/Num]
                :return Customer
                :summary "Retrieve customer by id."
-               (ok (q/get-customer CustomerId)))
+               (def customerFound (q/get-customer CustomerId))
+              (if customerFound (ok customerFound) (not-found)))
              (POST "/" []
                :summary "Add new customer"
                :body [customer-data SaveOrUpdateCustomer]
@@ -41,26 +43,25 @@
                :summary "Update customer information"
                :body [customer-data SaveOrUpdateCustomer]
                (let [{:keys [Name Contact]} customer-data]
-                 (ok {:updated (q/update-customer CustomerId Name Contact)})))
+                 (ok {:response (q/update-customer CustomerId Name Contact)})))
              (DELETE "/:CustomerId" []
                :summary "Delete customer"
                :path-params [CustomerId :- schema/Num]
-               (ok {:deleted (q/delete-customer CustomerId)}))
-             )
+               (ok {:response (q/delete-customer CustomerId)})))
 
            (context "/items" []
              :tags ["items"]
              (GET "/" []
                :return [Item]
                :summary "Get all items"
-               (ok (q/get-items)))
+               (def itemsFound (q/get-items))
+               (if itemsFound (ok itemsFound) (not-found)))
              (GET "/:ItemId" []
                :summary "Get item by id"
                :return Item
                :path-params [ItemId :- schema/Num]
-               (ok (q/get-item ItemId))))
-
-
+               (def itemFound (q/get-item ItemId))
+               (if itemFound (ok itemFound) (not-found))))
 
            )))
 
