@@ -47,6 +47,19 @@
                (ok {:deleted (q/delete-customer CustomerId)}))
              )
 
+           (context "/items" []
+             :tags ["items"]
+             (GET "/" []
+               :return [Item]
+               :summary "Get all items"
+               (ok (q/get-items)))
+             (GET "/:ItemId" []
+               :summary "Get item by id"
+               :return Item
+               :path-params [ItemId :- schema/Num]
+               (ok (q/get-item ItemId))))
+
+
 
            )))
 

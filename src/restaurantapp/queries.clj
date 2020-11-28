@@ -25,3 +25,12 @@
 (defn delete-customer [CustomerId]
   (delete customer (where {:CustomerId CustomerId})))
 
+;;items
+
+(defn get-items []
+  (select domain/item))
+
+(defn get-item [ItemId]
+  (first (select domain/item (where {:ItemId ItemId}))))
+
+
