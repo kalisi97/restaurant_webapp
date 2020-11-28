@@ -28,9 +28,9 @@
 ;;items
 
 (defn get-items []
-  (select domain/item))
+  (select item))
 
 (defn get-item [ItemId]
-  (first (select domain/item (where {:ItemId ItemId}))))
+  (first (select item (where {:ItemId ItemId}))))
 
 

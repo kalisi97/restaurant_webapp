@@ -15,6 +15,7 @@
                          :description "Compojure Api example"}
                   :tags [{:name "api"}
                          {:name "customers"}
+                         {:name "items"}
                         ]}}}
 
          (context "/api" []
