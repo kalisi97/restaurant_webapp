@@ -11,9 +11,14 @@
 (declare item)
 (declare customerorder)
 
+
+;; this is from korma, symbol must be equal to the name of the SQL table we use
+
 (defentity item
            (pk :ItemId)
            (entity-fields :ItemId :Name :Price))
+
+;; in order to perform join sql operation relations are set with the has-many korma.core macro
 
 (defentity customer
            (pk :CustomerId)
@@ -29,6 +34,8 @@
            (pk :OrderItemId)
            (belongs-to customerorder {:fk :OrderId})
            (entity-fields :OrderItemId :OrderId :ItemId :Quantity))
+
+;; schemas to standardize requests and responses
 
 (schema/defschema OrderItem
   {
