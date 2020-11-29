@@ -61,10 +61,16 @@
    :Price  schema/Num
    })
 
-(schema/defschema SaveOrUpdateCustomer
+(schema/defschema SaveOrUpdateItem
   {
    :Name       schema/Str
-   :Contact    schema/Str
+   :Price  schema/Num
+   })
+
+(schema/defschema SaveOrUpdateCustomer
+  {
+   :Name   schema/Str
+   :Price  schema/Num
    })
 
 (schema/defschema NewOrderItem

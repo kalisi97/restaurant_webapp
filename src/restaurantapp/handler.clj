@@ -37,8 +37,9 @@
              (POST "/" []
                :summary "Add new customer"
                :body [customer-data SaveOrUpdateCustomer]
-               (let [{:keys [Name Contact]} customer-data]
-                 (ok (q/add-customer Name Contact))))
+                 (let [{:keys [Name Contact]} customer-data]
+                   (def createdCustomer (q/add-customer Name Contact))
+                   (ok {:response "Customer inserted!"})))
              (PUT "/:CustomerId" [CustomerId]
                :summary "Update customer information"
                :body [customer-data SaveOrUpdateCustomer]
@@ -61,8 +62,14 @@
                :return Item
                :path-params [ItemId :- schema/Num]
                (def itemFound (q/get-item ItemId))
-               (if itemFound (ok itemFound) (not-found))))
-
+               (if itemFound (ok itemFound) (not-found)))
+             (POST "/" []
+               :summary "Add new item"
+               :body [item-data SaveOrUpdateItem]
+               (let [{:keys [Name Price]} item-data]
+                 (def itemInserted (q/add-item Name Price))
+                 (ok itemInserted))
+               ))
            )))
 
 
