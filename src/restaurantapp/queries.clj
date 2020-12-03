@@ -68,3 +68,14 @@
   (if existingItem
     (delete item (where {:ItemId ItemId}))
     "Item does not exist!"))
+
+(defn update-item [ItemId Name Price]
+  (def existingItem (get-item ItemId))
+  (if existingItem
+    (if (> Price 0)
+    (update item (set-fields {
+                                  :Name Name
+                                  :Price Price
+                                  }) (where {:ItemId ItemId}))
+    "Price cannot be 0 or less!")
+  "Customer does not exist!"))

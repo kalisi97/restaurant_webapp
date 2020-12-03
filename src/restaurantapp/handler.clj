@@ -69,7 +69,17 @@
                (let [{:keys [Name Price]} item-data]
                  (def itemInserted (q/add-item Name Price))
                  (ok itemInserted))
-               ))
+               )
+             (PUT "/:ItemId" [ItemId]
+               :summary "Update item information"
+               :body [item-data SaveOrUpdateItem]
+               (let [{:keys [Name Price]} item-data]
+                 (ok {:response (q/update-item ItemId Name Price)})))
+             (DELETE "/:ItemId" [ItemId]
+               :summary "Delete item"
+               :path-params [ItemId :- schema/Num]
+               (ok {:response (q/delete-item ItemId)}))
+             )
            )))
 
 
