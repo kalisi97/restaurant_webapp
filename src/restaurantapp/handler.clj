@@ -16,6 +16,7 @@
                   :tags [{:name "api"}
                          {:name "customers"}
                          {:name "items"}
+                         {:name "orders"}
                         ]}}}
 
          (context "/api" []
@@ -80,6 +81,19 @@
                :path-params [ItemId :- schema/Num]
                (ok {:response (q/delete-item ItemId)}))
              )
+
+           (context "/orders" []
+             :tags ["orders"]
+             (GET "/" []
+               :summary "Get all orders"
+               :return [Order]
+               (ok (q/get-orders)))
+             (POST "/" []
+               :body [new-order NewOrder]
+               (let [{:keys [CustomerId PMethod GTotal OrderItems]} new-order])
+               (doseq [item [(get new-order :OrderItems)]]
+                 (let [{:keys [ItemId Quantity]} item]))
+               (ok {:response (q/add-order new-order (get new-order :OrderItems)) })))
            )))
 
 

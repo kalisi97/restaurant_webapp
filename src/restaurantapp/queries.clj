@@ -85,12 +85,14 @@
 (defn get-orders []
   (select customerorder (with orderitems)))
 
+(defn get-order [OrderId]
+  (first (select customerorder (with orderitems) (where {OrderId :OrderId}))))
+
 (defn add-order
   [NewOrder OrderItems]
   (def existingCustomer (get-customer (get NewOrder :CustomerId)))
   (if existingCustomer
   ((def createOrder
-
      (insert customerorder (values
                                     {:CustomerId (get NewOrder :CustomerId)
                                      :PMethod (get NewOrder :PMethod)
@@ -102,5 +104,7 @@
                                         :OrderId (get createOrder :generated_key)
                                         :ItemId (get item  :ItemId)
                                         :Quantity (get item  :Quantity)
-                                        })))))
+                                        }))))
   "Customer does not exist!")
+ (get-order createdOrder)
+  )
