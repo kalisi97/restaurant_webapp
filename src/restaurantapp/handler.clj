@@ -93,7 +93,12 @@
                (let [{:keys [CustomerId PMethod GTotal OrderItems]} new-order])
                (doseq [item [(get new-order :OrderItems)]]
                  (let [{:keys [ItemId Quantity]} item]))
-               (ok {:response (q/add-order new-order (get new-order :OrderItems)) })))
+               (ok {:response (q/add-order new-order (get new-order :OrderItems)) }))
+             (DELETE "/:OrderId" [OrderId]
+               :summary "Delete order"
+               :path-params [OrderId :- schema/Num]
+               (ok {:response (q/delete-order OrderId)}))
+             )
            )))
 
 

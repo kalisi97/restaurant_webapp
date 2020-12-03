@@ -108,3 +108,9 @@
   "Customer does not exist!")
  (get-order createdOrder)
   )
+
+(defn delete-order [OrderId]
+  (def existingOrder (get-order OrderId))
+  (if existingOrder
+    (delete customerorder (where {:OrderId OrderId}))
+    "Order does not exist!"))
