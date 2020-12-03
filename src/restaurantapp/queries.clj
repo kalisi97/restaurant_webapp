@@ -79,3 +79,28 @@
                                   }) (where {:ItemId ItemId}))
     "Price cannot be 0 or less!")
   "Customer does not exist!"))
+
+;; order
+
+(defn get-orders []
+  (select customerorder (with orderitems)))
+
+(defn add-order
+  [NewOrder OrderItems]
+  (def existingCustomer (get-customer (get NewOrder :CustomerId)))
+  (if existingCustomer
+  ((def createOrder
+
+     (insert customerorder (values
+                                    {:CustomerId (get NewOrder :CustomerId)
+                                     :PMethod (get NewOrder :PMethod)
+                                     :GTotal (get NewOrder :GTotal)
+                                     })))
+   (def createdOrder  (get createOrder :generated_key))
+   (doseq [item OrderItems]
+     (insert orderitems (values {
+                                        :OrderId (get createOrder :generated_key)
+                                        :ItemId (get item  :ItemId)
+                                        :Quantity (get item  :Quantity)
+                                        })))))
+  "Customer does not exist!")
