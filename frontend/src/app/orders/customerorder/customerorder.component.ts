@@ -22,6 +22,19 @@ export class OrderComponent implements OnInit {
     private currentRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.resetForm();
+  }
+
+  resetForm(form?:NgForm){
+    if(form=null)
+    form.resetForm();
+    this.service.formData = {
+      OrderId: null,
+      CustomerId: 0,
+      PMethod: '',
+      GTotal: 0,
+      DeletedOrderItemIds: ''
+    };
   }
 
 }
