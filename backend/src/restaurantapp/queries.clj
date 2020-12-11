@@ -106,8 +106,7 @@
                                         :Quantity (get item  :Quantity)
                                         }))))
   "Customer does not exist!")
- (get-order createdOrder)
-  )
+ (get-order createdOrder))
 
 (defn delete-order [OrderId]
   (def existingOrder (get-order OrderId))
