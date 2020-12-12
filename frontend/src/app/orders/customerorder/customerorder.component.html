@@ -29,6 +29,41 @@
       </div>
     </div>
 
+
+    <!--order items table-->
+ <table class="table table-borderless">
+  <thead class="thead light">
+    <th>Food</th>
+    <th>Price</th>
+    <th>Quantity</th>
+    <th>Total</th>
+    <th>Id</th>
+    <th>
+
+     <a class="btn btn-sm btn-success text-white"(click)="AddOrEditOrderItem(null,service.formData.OrderId)"><i class="fa fa-plus"></i>Add item</a>
+    </th>
+  </thead>
+  <tbody>
+   <tr *ngIf="service.orderItems.length==0" [class.text-danger]="!isValid && service.orderItems.length==0">
+    
+<td class="font-italic text-center" colspan="5">
+ No food selected for this order.
+</td>
+    </tr>
+<tr *ngFor="let item of service.orderItems, let i = index">
+<td>{{item.ItemName}}</td>
+<td>{{item.Price}}</td>
+<td>{{item.Quantity}}</td>
+<td>{{item.Total}}</td>
+<td>{{item.ItemId}}</td>
+<td>
+ <a class="btn btn-sm btn-info text-white"(click)="AddOrEditOrderItem(i,service.formData.OrderId)"><i class="fa fa-pencil"></i>Edit item</a>
+ <a class="btn btn-sm btn-danger text-white ml-1" (click)="onDeleteOrderItem(i)"><i class="fa fa-trash"></i></a>
+</td>
+</tr>
+  </tbody>
+</table>
+
   <div class="form-group">
   <button type="submit" class="btn btn-dark"><i class="fa fa-database"></i> Submit</button>
   <a class="btn btn-outline-dark ml-1" routerLink="/orders"><i class="fa fa-table"></i> View Orders</a>
