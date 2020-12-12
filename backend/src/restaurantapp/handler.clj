@@ -3,10 +3,12 @@
            [ring.util.http-response :refer :all]
            [restaurantapp.queries :as q]
            [schema.core :as schema]
+           [ring.middleware.cors :refer [wrap-cors]]
            [restaurantapp.domain :refer :all]))
 
 
   (def app
+    (->
        (api
          {:swagger
           {:ui "/"
@@ -99,6 +101,9 @@
                :path-params [OrderId :- schema/Num]
                (ok {:response (q/delete-order OrderId)}))
              )
-           )))
+           ))
+       (wrap-cors :access-control-allow-origin #"http://localhost:4200"
+                  :access-control-allow-methods [:get :put :delete :post])
+       ))
 
 

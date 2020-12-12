@@ -6,6 +6,7 @@
   :dependencies [[org.clojure/clojure "1.10.1"]
                  [metosin/compojure-api "2.0.0-alpha30"]
                  [korma "0.4.3"]
+                 [ring-cors "0.1.13"]
                  [mysql/mysql-connector-java "8.0.12"]]
   :ring {:handler restaurantapp.handler/app}
   :profiles {:dev {:plugins [[lein-ring "0.12.5"]]}}
