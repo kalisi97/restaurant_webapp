@@ -9,6 +9,8 @@ import { OrderComponent } from './orders/customerorder/customerorder.component';
 import { OrderItemsComponent } from './orders/order-items/order-items.component';
 import { OrderService } from './shared/customerorder.service';
 import {MatDialogModule} from '@angular/material/dialog';
+import {HttpClientModule} from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +23,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatDialogModule
+    MatDialogModule,
+    HttpClientModule
   ],
   entryComponents: [OrderItemsComponent],
   providers: [OrderService],

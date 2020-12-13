@@ -40,7 +40,7 @@ export class OrderComponent implements OnInit {
     this.service.orderItems = [];
   }
 
-  AddOrEditOrderItem(orderItemIndex, OrderId)
+  AddOrderItem(orderItemIndex, OrderId)
   {
     
     const dialogConfig = new MatDialogConfig();
@@ -50,12 +50,11 @@ export class OrderComponent implements OnInit {
     dialogConfig.data = {orderItemIndex, OrderId};
     
  this.dialog.open(OrderItemsComponent, dialogConfig);
-  //   this.dialog.open(OrderItemsComponent, dialogConfig).afterClosed().subscribe(res=>
-     // {
-     //   this.updateGrandTotal();
-     // });
+
   }
 
-
+  onDeleteOrderItem( i: number) {
+    this.service.orderItems.splice(i, 1);
+  }
 
 }

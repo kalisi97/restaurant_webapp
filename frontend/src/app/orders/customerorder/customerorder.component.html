@@ -40,7 +40,7 @@
     <th>Id</th>
     <th>
 
-     <a class="btn btn-sm btn-success text-white"(click)="AddOrEditOrderItem(null,service.formData.OrderId)"><i class="fa fa-plus"></i>Add item</a>
+     <a class="btn btn-sm btn-success text-white"(click)="AddOrderItem(null,service.formData.OrderId)"><i class="fa fa-plus"></i>Add item</a>
     </th>
   </thead>
   <tbody>
@@ -57,7 +57,6 @@
 <td>{{item.Total}}</td>
 <td>{{item.ItemId}}</td>
 <td>
- <a class="btn btn-sm btn-info text-white"(click)="AddOrEditOrderItem(i,service.formData.OrderId)"><i class="fa fa-pencil"></i>Edit item</a>
  <a class="btn btn-sm btn-danger text-white ml-1" (click)="onDeleteOrderItem(i)"><i class="fa fa-trash"></i></a>
 </td>
 </tr>
