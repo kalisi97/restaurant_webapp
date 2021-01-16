@@ -11,13 +11,24 @@ import { OrderService } from './shared/customerorder.service';
 import { MatDialogModule} from '@angular/material/dialog';
 import { HttpClientModule} from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
-
+import { ItemsComponent } from './items/items.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { HomeComponent } from './home/home.component';
+import { RouterModule } from '@angular/router';
+import { ItemComponent } from './items/item/item.component';
+import { CustomersComponent } from './customers/customers.component';
+import { CustomerComponent } from './customers/customer/customer.component';
 @NgModule({
   declarations: [
     AppComponent,
     OrdersComponent,
     OrderComponent,
-    OrderItemsComponent
+    OrderItemsComponent,
+    ItemsComponent,
+    HomeComponent,
+    ItemComponent,
+    CustomersComponent,
+    CustomerComponent
   ],
   imports: [
     BrowserModule,
@@ -26,10 +37,13 @@ import { ToastrModule } from 'ngx-toastr';
     BrowserAnimationsModule,
     MatDialogModule,
     HttpClientModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    Ng2SearchPipeModule
   ],
   entryComponents: [OrderItemsComponent],
   providers: [OrderService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+
+  exports: [RouterModule]
 })
 export class AppModule { }

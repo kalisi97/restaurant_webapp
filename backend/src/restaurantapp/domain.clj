@@ -77,7 +77,7 @@
 (schema/defschema SaveOrUpdateCustomer
   {
    :Name   schema/Str
-   :Price  schema/Num
+   :Contact  schema/Str
    })
 
 (schema/defschema NewOrderItem

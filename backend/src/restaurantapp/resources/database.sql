@@ -25,11 +25,11 @@ DROP TABLE IF EXISTS `customer`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `customer` (
-  `CustomerId` int NOT NULL,
+  `CustomerId` int NOT NULL AUTO_INCREMENT,
   `Name` varchar(45) DEFAULT NULL,
   `Contact` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`CustomerId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` VALUES (1,'Katarina','0642119548'),(2,'Nikola','0642119595');
+INSERT INTO `customer` VALUES (2,'Nikola Simic','0642119548');
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -50,14 +50,14 @@ DROP TABLE IF EXISTS `customerorder`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `customerorder` (
-  `OrderId` int NOT NULL,
+  `OrderId` int NOT NULL AUTO_INCREMENT,
   `PMethod` varchar(45) DEFAULT NULL,
   `GTotal` decimal(18,2) DEFAULT NULL,
   `CustomerId` int DEFAULT NULL,
   PRIMARY KEY (`OrderId`),
-  KEY `fk1_idx` (`CustomerId`),
-  CONSTRAINT `fk1` FOREIGN KEY (`CustomerId`) REFERENCES `customer` (`CustomerId`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `fkk_idx` (`CustomerId`),
+  CONSTRAINT `fkk` FOREIGN KEY (`CustomerId`) REFERENCES `customer` (`CustomerId`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -66,6 +66,7 @@ CREATE TABLE `customerorder` (
 
 LOCK TABLES `customerorder` WRITE;
 /*!40000 ALTER TABLE `customerorder` DISABLE KEYS */;
+INSERT INTO `customerorder` VALUES (1,'Card',6.00,2);
 /*!40000 ALTER TABLE `customerorder` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -77,11 +78,11 @@ DROP TABLE IF EXISTS `item`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `item` (
-  `ItemId` int NOT NULL,
+  `ItemId` int NOT NULL AUTO_INCREMENT,
   `Name` varchar(45) DEFAULT NULL,
   `Price` decimal(18,2) DEFAULT NULL,
   PRIMARY KEY (`ItemId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -90,6 +91,7 @@ CREATE TABLE `item` (
 
 LOCK TABLES `item` WRITE;
 /*!40000 ALTER TABLE `item` DISABLE KEYS */;
+INSERT INTO `item` VALUES (2,'Pizza Capricosa L',12.00),(3,'Pizza Fungi M',3.00),(4,'Pizza Fungi L',7.00),(5,'Pizza Margherita M',3.00),(7,'Chicken nuggets',10.00);
 /*!40000 ALTER TABLE `item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -101,16 +103,16 @@ DROP TABLE IF EXISTS `orderitems`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `orderitems` (
-  `OrderItemId` int NOT NULL,
+  `OrderItemId` int NOT NULL AUTO_INCREMENT,
   `OrderId` int DEFAULT NULL,
   `ItemId` int DEFAULT NULL,
   `Quantity` decimal(18,2) DEFAULT NULL,
   PRIMARY KEY (`OrderItemId`),
+  KEY `fk1_idx` (`ItemId`),
   KEY `fk2_idx` (`OrderId`),
-  KEY `fk3_idx` (`ItemId`),
-  CONSTRAINT `fk2` FOREIGN KEY (`OrderId`) REFERENCES `customerorder` (`OrderId`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk3` FOREIGN KEY (`ItemId`) REFERENCES `item` (`ItemId`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `fk1` FOREIGN KEY (`ItemId`) REFERENCES `item` (`ItemId`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk2` FOREIGN KEY (`OrderId`) REFERENCES `customerorder` (`OrderId`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -119,6 +121,7 @@ CREATE TABLE `orderitems` (
 
 LOCK TABLES `orderitems` WRITE;
 /*!40000 ALTER TABLE `orderitems` DISABLE KEYS */;
+INSERT INTO `orderitems` VALUES (1,1,3,2.00);
 /*!40000 ALTER TABLE `orderitems` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -131,4 +134,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-01-11 23:48:20
+-- Dump completed on 2021-01-16  3:39:53
