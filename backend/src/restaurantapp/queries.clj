@@ -1,8 +1,10 @@
 (ns restaurantapp.queries
+  (:refer-clojure :exclude [update])
   (:require [korma.core :refer :all]
             [korma.db :refer :all]
             [restaurantapp.database :refer [db]]
-            [restaurantapp.domain :refer :all]))
+            [restaurantapp.domain :refer :all]
+           ))
 
 
 ;; customers
@@ -83,7 +85,7 @@
 ;; order
 
 (defn get-orders []
-  (select customerorder (with orderitems)))
+  (select customerorder (with customer) (with orderitems)))
 
 (defn get-order [OrderId]
   (first (select customerorder (with orderitems) (where {OrderId :OrderId}))))

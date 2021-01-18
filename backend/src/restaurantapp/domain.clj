@@ -1,9 +1,10 @@
 (ns restaurantapp.domain
+  (:refer-clojure :exclude [update])
   (:require [korma.core :refer :all]
             [korma.db :refer :all]
             [restaurantapp.database :refer [db]]
             [schema.core :as schema]
-            [clojure.core :as core]))
+            [clojure.core :as core ]))
 
 
 (declare customer)
@@ -28,7 +29,8 @@
 (defentity customerorder
            (pk :OrderId)
            (has-many orderitems {:fk :OrderId})
-           (belongs-to customer {:fk :CustomerId}))
+            (belongs-to customer {:fk :CustomerId})
+           )
 
 (defentity orderitems
            (pk :OrderItemId)
@@ -55,10 +57,13 @@
 (schema/defschema Order
   {
    :OrderId    schema/Num
-   :CustomerId schema/Num
    :PMethod    schema/Str
    :GTotal     schema/Num
    :orderitems [OrderItem]
+   :CustomerId schema/Num
+   :CustomerId_2 schema/Num
+   :Name schema/Str
+   :Contact schema/Str
    })
 
 (schema/defschema Item

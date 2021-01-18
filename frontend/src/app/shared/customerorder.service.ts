@@ -48,6 +48,16 @@ RemoveItems: string[];
       return this.orderItemsPOST;
   }
 
+  getOrdersList()
+{
+ 
+ return this.http.get(environment.apiUrl+'/orders').toPromise();
+}
+
+delete(id : number)
+{
+  return this.http.delete(environment.apiUrl + '/orders/'+id).toPromise();
+}
 
 }
 

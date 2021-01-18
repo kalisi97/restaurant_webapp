@@ -3,5 +3,7 @@ export class Order {
     CustomerId: number;
     PMethod: string;
     GTotal: number;
+    Name: string;
     DeletedOrderItemIds: string;
+
 }
