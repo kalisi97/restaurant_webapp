@@ -80,7 +80,7 @@
                                   :Price Price
                                   }) (where {:ItemId ItemId}))
     "Price cannot be 0 or less!")
-  "Customer does not exist!"))
+  "Item does not exist!"))
 
 ;; order
 

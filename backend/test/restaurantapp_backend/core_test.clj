@@ -13,6 +13,8 @@
     (is (= 3 (+ 2 1)))
     ))
 
+;customer
+
 ;; this test should pass
 
 (deftest create-customer
@@ -22,7 +24,7 @@
  (is (= "Petar Peric" (found-customer :Name)))
   )))
 
-(deftest multiple-customers-operations
+(deftest find-all-customers
   (testing "Find all customers"
     (def customerCount (count (q/get-customers)))
     (q/add-customer "Name2" "Contact2")
@@ -42,10 +44,30 @@
       (is (= "Customer does not exist!" (q/delete-customer 100)))
       ))
 
-
 (deftest update-customer
   (testing "Modifies existing customer"
     (let [customer-orig (q/add-customer "Customer1" "Contact1")
           customer-id (customer-orig :CustomerId)]
       (q/update-customer customer-id "Updated Customer" "Contact1")
       (is (= "Updated Customer" (:Name (q/get-customer customer-id)))))))
+
+;item
+
+
+(deftest add-item-with-price-0
+(testing "Add item with price 0"
+  (is (= "Price cannot be 0 or less!"  (q/add-item "Item" 0)))))
+
+(deftest add-item-with-valid-price
+  (testing "Add item with valid price"
+    (let [item (q/add-item "Item valid" 10)
+          found-item (q/get-item (item :ItemId))]
+          (is (= "Item valid" (found-item :Name)))
+          )))
+
+(deftest delete-item
+  (testing "Delete item"
+    (let [item (q/add-item "Item to delete" 21)
+          item-count (count (q/get-items))]
+        (q/delete-item (item :ItemId))
+        (is (= (dec item-count) (count (q/get-items)))))))
