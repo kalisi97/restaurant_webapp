@@ -49,6 +49,8 @@ lein ring server
 ```
 This will open the browser window.
 
+![Screenshot](/img/Screenshot_1.png)
+
 ## Run tests
 
 Clojure includes a unit-testing framework in its clojure.test namespace. It provides ways to name and group tests, make assertions, report results, and orchestrate test suites.
@@ -56,6 +58,7 @@ Clojure includes a unit-testing framework in its clojure.test namespace. It prov
 ```
 lein test
 ```
+![Screenshot2](/img/Screenshot_2.png)
 
 ## References
 
