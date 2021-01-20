@@ -1,6 +1,9 @@
 (ns restaurantapp-backend.core-test
   (:require [clojure.test :refer :all]
-            [restaurantapp.queries :as q]))
+            [restaurantapp.queries :as q]
+            [restaurantapp.handler :refer :all]
+            [ring.mock.request :as mock]
+            [ring.util.http-status :refer :all]))
 
 
 ;The correct behaviour in IntelliJ.
@@ -36,10 +39,10 @@
     (let [customer (q/add-customer "Testing name" "Testing contact")]
     (q/delete-customer (customer :CustomerId))
       (is (= nil (q/get-customer (customer :CustomerId))))
-    )))
+    ))
 
 ;;delete non-existing customer
-(deftest delete-non-existing-customer
+
   (testing "Delete customer"
       (is (= "Customer does not exist!" (q/delete-customer 100)))
       ))
@@ -71,3 +74,16 @@
           item-count (count (q/get-items))]
         (q/delete-item (item :ItemId))
         (is (= (dec item-count) (count (q/get-items)))))))
+
+;routes
+
+(deftest testing-routes
+  (testing "not-found route"
+  (let [response (app (-> (mock/request :get "/api/bogus-route")))]
+    (is (= (:status response) not-found))))
+  (testing "items endpoint"
+    (let [response (app (-> (mock/request :get "/api/items")))]
+      (is (= (:status response) 200))
+      (is (= (get-in response [:headers "Content-Type"]) "application-json"))))
+  )
+
