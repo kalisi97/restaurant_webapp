@@ -10,6 +10,11 @@ This Clojure project uses Compojure, Swagger and Ring. Swagger is used in order 
 
 [Korma](https://github.com/korma/Korma) - one of the most popular SQL tool for Clojure.
 
+## Project description
+
+This project represents the software system developed to manage restaurant orders. There are items (food and drinks) and customers in the database, and the workers can insert, update or delete items and customers. They can also insert new orders and the system then automatically will calculate the total amount which the customer needs to pay. In this scenario, the system creates a new customer order. Also, for each item that is selected, the system creates a new order item that contains the information about customer order and item selected. This object is then persisted in the database when the worker clicks submit button.
+
+
 ## Requirements
 
 To start the server you need to have Java installed as well as Clojure build tool Leiningen. To use the API with the data you need to have MySQL installed as well.
@@ -21,6 +26,7 @@ java -v
 ```
 Install Clojure by installing the [Leiningen Build Tool](https://leiningen.org/#install)
 Install [MySQL](https://dev.mysql.com/downloads/mysql/)
+
 
 ## Setting up the database
 
