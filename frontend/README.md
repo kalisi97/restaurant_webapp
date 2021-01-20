@@ -2,6 +2,14 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.4.
 
+##Getting started
+
+To start this project you need to have Angular CLI installed
+
+##Install dependencies
+
+Navigate to the root of the Angular project. If using npm, run npm install to get all the necessary dependencies.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
