@@ -4,7 +4,8 @@
             [restaurantapp.queries :as q]
             [schema.core :as schema]
             [ring.middleware.cors :refer [wrap-cors]]
-            [restaurantapp.domain :refer :all]))
+            [restaurantapp.domain :refer :all]
+            [compojure.route :as route]))
 
 
 (def app
@@ -101,6 +102,8 @@
             :path-params [OrderId :- schema/Num]
             (ok {:response (q/delete-order OrderId)}))
           )
+        (route/not-found
+          (not-found {:body "No such endpoint."}))
         ))
     (wrap-cors :access-control-allow-origin #"http://localhost:4200"
                :access-control-allow-methods [:get :put :delete :post])
