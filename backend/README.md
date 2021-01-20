@@ -6,7 +6,7 @@ This Clojure project uses Compojure, Swagger and Ring. Swagger is used in order 
 
 [Ring](https://github.com/ring-clojure/ring) - a Clojure web applications library. Allows web applications to be constructed of modular components that can be shared among a variety of applications, web servers, and web frameworks.
 
-[Compojure](https://github.com/weavejester/compojure) - a small routing library for Ring..
+[Compojure](https://github.com/weavejester/compojure) - a small routing library for Ring.
 
 [Korma](https://github.com/korma/Korma) - one of the most popular SQL tool for Clojure.
 
