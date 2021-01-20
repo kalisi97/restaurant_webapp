@@ -84,6 +84,5 @@
   (testing "items endpoint"
     (let [response (app (-> (mock/request :get "/api/items")))]
       (is (= (:status response) 200))
-      (is (= (get-in response [:headers "Content-Type"]) "application-json"))))
-  )
+      (is (= (get-in response [:headers "Content-Type"]) "application/json; charset=utf-8")))))
 
