@@ -1,4 +1,5 @@
-# Restaurantapp-backend - Clojure REST API using Leiningen and MySQL
+# Restaurant application
+# backend - Clojure REST API using Leiningen and MySQL
 
 This Clojure project uses Compojure, Swagger and Ring. Swagger is used in order to make a "sweet API". This project also uses SQL Korma for communicating with the MySQL database. The project was developed as part of the assignment for the course Software Engineering Tools and Methodology on Master's studies - Software Engineering and Computer Sciences at the Faculty of Organization Sciences, University of Belgrade, Serbia.
 
